@@ -11,8 +11,8 @@ public class Main {
                 new AnnotationConfigApplicationContext(AppConfig.class);
         UserService userService = context.getBean(UserService.class);
 
-        userService.add(new User("Fedir", "Rudiachenko", "fedia.rudiachenko@gmail.com"));
-        userService.add(new User("Anna", "Samoylik", "samoylik@gmail.com"));
+        userService.add(new User("bob@gmail.com", "bob", "123456"));
+        userService.add(new User("alice@gmail.com", "alice", "password"));
         userService.listUsers().forEach(System.out::println);
     }
 }

@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.UserDao;
 import java.util.List;
+import java.util.NoSuchElementException;
 import model.User;
 import org.springframework.stereotype.Service;
 import service.UserService;
@@ -17,6 +18,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(User user) {
         userDao.add(user);
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userDao.getById(id).orElseThrow(() ->
+                new NoSuchElementException("User with id " + id + " not found"));
     }
 
     @Override

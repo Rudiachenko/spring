@@ -5,7 +5,7 @@ import model.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConvertModel {
+public class UserMapper {
     protected UserResponseDto toDto(User user) {
         UserResponseDto userDto = new UserResponseDto();
         userDto.setId(user.getId());

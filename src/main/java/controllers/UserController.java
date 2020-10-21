@@ -14,11 +14,11 @@ import service.UserService;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final ConvertModel convertModel;
+    private final UserMapper userMapper;
 
-    public UserController(UserService userService, ConvertModel convertModel) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
-        this.convertModel = convertModel;
+        this.userMapper = userMapper;
     }
 
     @GetMapping("/inject")
@@ -33,13 +33,13 @@ public class UserController {
     @GetMapping("{userId}")
     public UserResponseDto getUser(@PathVariable Long userId) {
         User user = userService.getById(userId);
-        return convertModel.toDto(user);
+        return userMapper.toDto(user);
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<UserResponseDto> getAll() {
         return userService.listUsers().stream()
-                .map(convertModel::toDto)
+                .map(userMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
